@@ -85,7 +85,7 @@ val s1 : string = "This is "
 
 ### GitHub 使いの人へ
 
-1. 課題レポジトリの作成をする．https://classroom.github.com/assignment-invitations/16658a5dd9bc437a2f8370ac9c03d71b にアクセスし，手続を進めると，`kadai1-〈GitHubアカウント〉` という名前のレポジトリが生成される．
+1. 課題レポジトリの作成をする．https://classroom.github.com/assignment-invitations/16658a5dd9bc437a2f8370ac9c03d71b にアクセスし，手続を進めると，`kadai1-〈GitHubアカウント〉` という名前のレポジトリが生成される．(これは上の レポジトリと同内容のはずです．)
 1. このレポジトリを fork，自分の PC に clone する．
 1. ブランチを作って(名前はなんでもよいです)，課題に沿って編集して commit, GitHub へ push する．
 1. Fork 元にプルリクを出したら提出完了．
