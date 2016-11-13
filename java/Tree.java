@@ -1,4 +1,4 @@
-interface Tree {
+public interface Tree {
     public int value();
     // public String toString();             // Kadai 1-3
     // public String toStringFewerParens();  // Kadai 1-4
