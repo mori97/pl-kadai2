@@ -169,10 +169,7 @@ val s1 : string = "This is "
 
 ## 提出要領
 
-1. https://github.com/ProgrammingLanguagesAtKUEng/kadai1 からファイルをダウンロードする．(git 使いはもちろん clone してもよい．) 
-2. Java プログラムは `java` フォルダに入れること．OCaml プログラムは `ocaml/tree.ml` を編集して作成すること．
+1. https://github.com/ProgrammingLanguagesAtKUEng/kadai1 からファイルをダウンロードする．(git 使いはもちろん clone してもよい．)
+2. Java プログラムおよびそのテストは `java` フォルダに入れること．OCaml プログラムおよびそのテストは `ocaml` フォルダに入れること．
 3. プログラムの説明を `report.md` (Markdown もしくは plain text 形式)に書け．課題毎に説明すること．内容だけでなく読みやすさも採点の対象となる．これは，この `README.md` と同じフォルダに置くこと．(上記のURLからダウンロードすると雛形が含まれている．)
 4. プログラムの説明を入れたフォルダを圧縮して zip ファイルを作り，PandA で提出すること．
-
-
-
