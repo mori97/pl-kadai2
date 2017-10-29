@@ -167,6 +167,22 @@ val s1 : string = "This is "
 * コンパイルができないプログラムを提出した場合には採点の対象外となる．
 * Java のパッケージ機能は(コンパイルする環境に依存しがちなので)使わないでください．
 
+### 複数のOCamlファイルからなるプログラムのビルド方法
+
+このリポジトリの `ocaml` ディレクトリには，OCamlの課題のテストの実行を補助するための Makefile が含まれている．端末上で `ocaml` ディレクトリの中まで行き， `make test1.out` と実行すると，1行目に
+
+```
+ocamlopt tree.ml testcase.ml test1.ml -o test1.out
+```
+
+と表示される．
+
+* `ocamlopt` はOCamlソースファイルを実行可能ファイルへ変換するコマンドである．
+* `ocamlopt` コマンドの後には `tree.ml testcase.ml test1.ml` のように作りたいプログラムのもとになるソースファイルを列挙する．
+    * このとき，依存されるソースファイルは依存するソースファイルよりも前に並べる必要がある．
+    * 今回の場合， `testcase.ml` は `tree.ml` に依存し， `test1.ml` は `tree.ml` と `testcase.ml` の両方に依存するので， `tree.ml testcase.ml tree.ml`の順番に並べなければならない．
+* `-o test1.out` は出力する実行可能ファイルの名前を `test1.out` に指定する．このオプションを省略すると出力ファイルは `a.out` となる．
+
 ## 提出要領
 
 1. https://github.com/ProgrammingLanguagesAtKUEng/kadai1 からファイルをダウンロードする．(git 使いはもちろん clone してもよい．)
