@@ -31,4 +31,26 @@ public class BranchX implements Tree {
     public String toString() {
         return String.format("(%s^%s)", left.toString(), right.toString());
     }
+
+    /**
+     * 計算木の価値を表す計算式を、括弧を省いた形で出力する
+     *
+     * @return 計算式の文字列
+     */
+    public String toStringFewerParens() {
+        String leftString, rightString;
+        if (left instanceof Leaf) {
+            leftString = left.toStringFewerParens();
+        } else {
+            leftString = String.format("(%s)", left.toStringFewerParens());
+        }
+
+        if ((right instanceof Leaf) || (right instanceof BranchX)) {
+            rightString = right.toStringFewerParens();
+        } else {
+            rightString = String.format("(%s)", right.toStringFewerParens());
+        }
+
+        return String.format("%s^%s", leftString, rightString);
+    }
 }

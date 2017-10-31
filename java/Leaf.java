@@ -28,4 +28,13 @@ public class Leaf implements Tree {
     public String toString() {
         return Integer.toString(this.value);
     }
+
+    /**
+     * 計算木の価値を表す計算式を、括弧を省いた形で出力する
+     *
+     * @return 計算式の文字列
+     */
+    public String toStringFewerParens() {
+        return Integer.toString(this.value);
+    }
 }

@@ -31,4 +31,21 @@ public class BranchS implements Tree {
     public String toString() {
         return String.format("(%s+%s)", left.toString(), right.toString());
     }
+
+    /**
+     * 計算木の価値を表す計算式を、括弧を省いた形で出力する
+     *
+     * @return 計算式の文字列
+     */
+    public String toStringFewerParens() {
+        if (right instanceof BranchS) {
+            return String.format("%s+(%s)",
+                                 left.toStringFewerParens(),
+                                 right.toStringFewerParens());
+        } else {
+            return String.format("%s+%s",
+                                 left.toStringFewerParens(),
+                                 right.toStringFewerParens());
+        }
+    }
 }
