@@ -22,4 +22,13 @@ public class BranchM implements Tree {
     public int value() {
         return left.value() * right.value();
     }
+
+    /**
+     * 計算木の価値を表す計算式を出力する
+     *
+     * @return  計算式の文字列
+     */
+    public String toString() {
+        return String.format("(%s*%s)", left.toString(), right.toString());
+    }
 }

@@ -19,4 +19,13 @@ public class Leaf implements Tree {
     public int value() {
         return this.value;
     }
+
+    /**
+     * 計算木の価値を表す計算式を出力する
+     *
+     * @return  計算式の文字列
+     */
+    public String toString() {
+        return Integer.toString(this.value);
+    }
 }
