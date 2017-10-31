@@ -53,4 +53,22 @@ public class BranchX implements Tree {
 
         return String.format("%s^%s", leftString, rightString);
     }
+
+    /**
+     * 計算木の葉の数を数える
+     *
+     * @return 葉の数
+     */
+    public int countLeaf() {
+        return left.countLeaf() + right.countLeaf();
+    }
+
+    /**
+     * 計算木の高さを計算する
+     *
+     * @return 計算木の高さ
+     */
+    public int height() {
+        return Math.max(left.height(), right.height()) + 1;
+    }
 }

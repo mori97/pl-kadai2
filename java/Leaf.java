@@ -37,4 +37,22 @@ public class Leaf implements Tree {
     public String toStringFewerParens() {
         return Integer.toString(this.value);
     }
+
+    /**
+     * 計算木の葉の数を数える
+     *
+     * @return 葉の数
+     */
+    public int countLeaf() {
+        return 1;
+    }
+
+    /**
+     * 計算木の高さを計算する
+     *
+     * @return 計算木の高さ
+     */
+    public int height() {
+        return 0;
+    }
 }
