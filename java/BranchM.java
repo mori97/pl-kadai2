@@ -71,4 +71,23 @@ public class BranchM implements Tree {
     public int height() {
         return Math.max(left.height(), right.height()) + 1;
     }
+
+    /**
+     * 木を簡約操作を行い、簡約された計算木を返す。元の計算木は影響されない。
+     *
+     * ふたつの葉を部分木として持つ枝一箇所を選んで、その部分木をその
+     * 部分木の価値を格納した葉で置換する。木に該当箇所がひとつもない場合には，
+     * 入力された木がそのまま出力となる。
+     *
+     * @return 新しい計算木
+     */
+    public Tree reduce() {
+        if ((this.left instanceof Leaf) && (this.right instanceof Leaf)) {
+            return new Leaf(this.left.value() * this.right.value());
+        } else if (this.left instanceof Leaf) {
+            return new BranchM(this.left, this.right.reduce());
+        } else {
+            return new BranchM(this.left.reduce(), this.right);
+        }
+    }
 }

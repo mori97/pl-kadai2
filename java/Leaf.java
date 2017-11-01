@@ -55,4 +55,17 @@ public class Leaf implements Tree {
     public int height() {
         return 0;
     }
+
+    /**
+     * 木を簡約操作を行い、簡約された計算木を返す。元の計算木は影響されない。
+     *
+     * ふたつの葉を部分木として持つ枝一箇所を選んで、その部分木をその
+     * 部分木の価値を格納した葉で置換する。木に該当箇所がひとつもない場合には，
+     * 入力された木がそのまま出力となる。
+     *
+     * @return 新しい計算木
+     */
+    public Tree reduce() {
+        return this;
+    }
 }
