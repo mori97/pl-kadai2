@@ -5,5 +5,5 @@ public interface Tree {
     public int countLeaf();               // Kadai 1-1-5
     public int height();
     public Tree reduce();                 // Kadai 1-1-6
-    // public Tree subst(int n, Tree t);     // Kadai 1-1-7
+    public Tree subst(int n, Tree t);     // Kadai 1-1-7
 }

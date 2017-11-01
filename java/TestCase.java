@@ -16,7 +16,9 @@ public class TestCase {
             new BranchS(new Leaf(2), new BranchX(new Leaf(2), new BranchM(new Leaf(2), new Leaf(3)))),
             // 課題 1-1-4
             new BranchX(new Leaf(3), new BranchX(new Leaf(3), new Leaf(3))),
-            new BranchX(new BranchX(new Leaf(3), new Leaf(3)), new Leaf(3))
+            new BranchX(new BranchX(new Leaf(3), new Leaf(3)), new Leaf(3)),
+            // 課題 1-1-7 用(t が偶数個の要素を持たないといけないみたい)
+            new BranchS(new Leaf(1), new Leaf(2))
         };
     }
 }

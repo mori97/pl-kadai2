@@ -68,4 +68,20 @@ public class Leaf implements Tree {
     public Tree reduce() {
         return this;
     }
+
+    /**
+     * 計算木中の n を格納した葉を全て計算木 t で置き換えたような計算木を
+     * 生成する
+     *
+     * @param   n     値 n を格納する葉を置換する
+     * @param   t     置換用の(計算木)部分木
+     * @return        新しい計算木
+     */
+    public Tree subst(int n, Tree t) {
+        if (this.value == n) {
+            return t;
+        } else {
+            return this;
+        }
+    }
 }
