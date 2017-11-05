@@ -2,9 +2,13 @@ type tree = Leaf of int
           | BranchS of tree * tree
           | BranchM of tree * tree
 
-(* Kadai 1-2-1
-let value_of_tree(t) = (* FILL IN HERE *)
-*)
+(* Kadai 1-2-1 *)
+(* 計算木の価値を返す関数 *)
+let rec value_of_tree t =
+  match t with
+    Leaf value -> value
+  | BranchS (left, right) -> value_of_tree left + value_of_tree right
+  | BranchM (left, right) -> value_of_tree left * value_of_tree right;;
 
 (* Kadai 1-2-2
 let value_of_tree2(t) = (* FILL IN HERE *)
