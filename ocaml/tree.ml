@@ -106,9 +106,29 @@ let rec height t =
   | BranchM (left, right) -> max (height left) (height right) + 1
   | BranchX (left, right) -> max (height left) (height right) + 1;;
 
-(* Kadai 1-2-6
-let reduce(t) = (* FILL IN HERE *)
- *)
+(* Kadai 1-2-6 *)
+(* 木の簡約操作を行う *)
+let rec reduce t =
+    match t with
+      Leaf _ -> t
+    | BranchS (left, right)  ->
+        (match (left, right) with
+          (Leaf v1, Leaf v2) -> Leaf (v1 + v2)
+        | (Leaf _, _) -> BranchS (left, reduce right)
+        | (_, _) -> BranchS (reduce left, right))
+    | BranchM (left, right)  ->
+        (match (left, right) with
+          (Leaf v1, Leaf v2) -> Leaf (v1 * v2)
+        | (Leaf _, _) -> BranchM (left, reduce right)
+        | (_, _) -> BranchM (reduce left, right))
+    | BranchX (left, right)  ->
+        (match (left, right) with
+          (Leaf v1, Leaf v2) ->
+            let rec pow n m = (* n の m 乗 *)
+              if m <= 0 then 1 else n * pow n (m - 1) in
+            Leaf (pow v1 v2)
+        | (Leaf _, _) -> BranchX (left, reduce right)
+        | (_, _) -> BranchX (reduce left, right));;
 
 (* Kadai 1-2-7
 let subst(t, n, t') = (* FILL IN HERE *)
