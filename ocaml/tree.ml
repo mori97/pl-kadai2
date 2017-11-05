@@ -130,6 +130,15 @@ let rec reduce t =
         | (Leaf _, _) -> BranchX (left, reduce right)
         | (_, _) -> BranchX (reduce left, right));;
 
-(* Kadai 1-2-7
-let subst(t, n, t') = (* FILL IN HERE *)
-*)
+(* Kadai 1-2-7 *)
+(* 計算木 t 中の n を格納した葉を全て計算木 t' で置き換える *)
+let rec subst (t, n, t') =
+    match t with
+      Leaf value ->
+        if value == n then t' else t
+    | BranchS (left, right) ->
+        BranchS (subst (left, n, t'), subst (right, n, t'))
+    | BranchM (left, right) ->
+        BranchM (subst (left, n, t'), subst (right, n, t'))
+    | BranchX (left, right) ->
+        BranchX (subst (left, n, t'), subst (right, n, t'))
