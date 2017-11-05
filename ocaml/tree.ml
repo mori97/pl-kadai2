@@ -22,9 +22,17 @@ let rec value_of_tree2 t =
   | BranchM (left, right) -> value_of_tree2 left * value_of_tree2 right
   | BranchX (left, right) -> pow (value_of_tree2 left) (value_of_tree2 right);;
 
-(* Kadai 1-2-3
-let string_of_tree(t) = (* FILL IN HERE *)
-*)
+(* Kadai 1-2-3 *)
+(* 計算木の価値を表す計算式を出力する *)
+let rec string_of_tree t =
+  match t with
+    Leaf value -> string_of_int value
+  | BranchS (left, right) ->
+     "(" ^ string_of_tree left ^ "+" ^ string_of_tree right ^ ")"
+  | BranchM (left, right) ->
+     "(" ^ string_of_tree left ^ "*" ^ string_of_tree right ^ ")"
+  | BranchX (left, right) ->
+     "(" ^ string_of_tree left ^ "^" ^ string_of_tree right ^ ")";;
 
 (* Kadai 1-2-4
 let string_of_tree_fewer_parens(t) = (* FILL IN HERE *)
