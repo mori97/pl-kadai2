@@ -34,9 +34,59 @@ let rec string_of_tree t =
   | BranchX (left, right) ->
      "(" ^ string_of_tree left ^ "^" ^ string_of_tree right ^ ")";;
 
-(* Kadai 1-2-4
-let string_of_tree_fewer_parens(t) = (* FILL IN HERE *)
- *)
+(* Kadai 1-2-4 *)
+(* 計算木の価値を表す計算式を、括弧を省いた形で出力する *)
+let rec string_of_tree_fewer_parens t =
+  match t with
+    Leaf value -> string_of_int value
+  | BranchS (left, right) ->
+      (match (left, right) with
+        (_, BranchS(_, _)) ->
+          string_of_tree_fewer_parens left ^ "+("
+          ^ string_of_tree_fewer_parens right ^ ")"
+      | (_, _) ->
+          string_of_tree_fewer_parens left ^ "+"
+          ^ string_of_tree_fewer_parens right)
+  | BranchM (left, right) ->
+      (match (left, right) with
+        (BranchS (_, _), BranchS (_, _)) ->
+          "(" ^ string_of_tree_fewer_parens left ^ ")*("
+          ^ string_of_tree_fewer_parens right ^ ")"
+      | (BranchS (_, _), BranchM (_, _)) ->
+          "(" ^ string_of_tree_fewer_parens left ^ ")*("
+          ^ string_of_tree_fewer_parens right ^ ")"
+      | (BranchS (_, _), _) ->
+          "(" ^ string_of_tree_fewer_parens left ^ ")*"
+          ^ string_of_tree_fewer_parens right
+      | (_, BranchS (_, _)) ->
+          string_of_tree_fewer_parens left ^ "*("
+          ^ string_of_tree_fewer_parens right ^ ")"
+      | (_, BranchM (_, _)) ->
+          string_of_tree_fewer_parens left ^ "*("
+          ^ string_of_tree_fewer_parens right ^ ")"
+      | (_, _) ->
+          string_of_tree_fewer_parens left ^ "*"
+          ^ string_of_tree_fewer_parens right)
+  | BranchX (left, right) ->
+      (match (left, right) with
+        (Leaf _, Leaf _) ->
+          string_of_tree_fewer_parens left ^ "^"
+          ^ string_of_tree_fewer_parens right
+      | (Leaf _, BranchX (_, _)) ->
+          string_of_tree_fewer_parens left ^ "^"
+          ^ string_of_tree_fewer_parens right
+      | (Leaf _, _) ->
+          string_of_tree_fewer_parens left ^ "^("
+          ^ string_of_tree_fewer_parens right ^ ")"
+      | (_, Leaf _) ->
+          "(" ^ string_of_tree_fewer_parens left ^ ")^"
+          ^ string_of_tree_fewer_parens right
+      | (_, BranchX (_, _)) ->
+          "(" ^ string_of_tree_fewer_parens left ^ ")^"
+          ^ string_of_tree_fewer_parens right
+      | (_, _) ->
+          "(" ^ string_of_tree_fewer_parens left ^ ")^("
+          ^ string_of_tree_fewer_parens right ^ ")");;
 
 (* Kadai 1-2-5
 let count_leaf t = (* FILL IN HERE *)
