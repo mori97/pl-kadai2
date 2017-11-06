@@ -42,49 +42,51 @@ let rec string_of_tree_fewer_parens t =
   | BranchS (left, right) ->
       (match (left, right) with
         (_, BranchS(_, _)) ->
+          (* 右の部分だけを括弧で囲む場合 *)
           string_of_tree_fewer_parens left ^ "+("
           ^ string_of_tree_fewer_parens right ^ ")"
       | (_, _) ->
+          (* 括弧で囲む必要がない場合 *)
           string_of_tree_fewer_parens left ^ "+"
           ^ string_of_tree_fewer_parens right)
   | BranchM (left, right) ->
       (match (left, right) with
-        (BranchS (_, _), BranchS (_, _)) ->
-          "(" ^ string_of_tree_fewer_parens left ^ ")*("
-          ^ string_of_tree_fewer_parens right ^ ")"
+        (BranchS (_, _), BranchS (_, _))
       | (BranchS (_, _), BranchM (_, _)) ->
+          (* 両方を括弧で囲む場合 *)
           "(" ^ string_of_tree_fewer_parens left ^ ")*("
           ^ string_of_tree_fewer_parens right ^ ")"
       | (BranchS (_, _), _) ->
+          (* 左の部分だけを括弧で囲む場合 *)
           "(" ^ string_of_tree_fewer_parens left ^ ")*"
           ^ string_of_tree_fewer_parens right
-      | (_, BranchS (_, _)) ->
-          string_of_tree_fewer_parens left ^ "*("
-          ^ string_of_tree_fewer_parens right ^ ")"
+      | (_, BranchS (_, _))
       | (_, BranchM (_, _)) ->
+          (* 右の部分だけを括弧で囲む場合 *)
           string_of_tree_fewer_parens left ^ "*("
           ^ string_of_tree_fewer_parens right ^ ")"
       | (_, _) ->
+          (* 括弧で囲む必要がない場合 *)
           string_of_tree_fewer_parens left ^ "*"
           ^ string_of_tree_fewer_parens right)
   | BranchX (left, right) ->
       (match (left, right) with
-        (Leaf _, Leaf _) ->
-          string_of_tree_fewer_parens left ^ "^"
-          ^ string_of_tree_fewer_parens right
+        (Leaf _, Leaf _)
       | (Leaf _, BranchX (_, _)) ->
+          (* 括弧で囲む必要がない場合 *)
           string_of_tree_fewer_parens left ^ "^"
           ^ string_of_tree_fewer_parens right
       | (Leaf _, _) ->
+          (* 右の部分だけを括弧で囲む場合 *)
           string_of_tree_fewer_parens left ^ "^("
           ^ string_of_tree_fewer_parens right ^ ")"
-      | (_, Leaf _) ->
-          "(" ^ string_of_tree_fewer_parens left ^ ")^"
-          ^ string_of_tree_fewer_parens right
+      | (_, Leaf _)
       | (_, BranchX (_, _)) ->
+          (* 左の部分だけを括弧で囲む場合 *)
           "(" ^ string_of_tree_fewer_parens left ^ ")^"
           ^ string_of_tree_fewer_parens right
       | (_, _) ->
+          (* 両方を括弧で囲む場合 *)
           "(" ^ string_of_tree_fewer_parens left ^ ")^("
           ^ string_of_tree_fewer_parens right ^ ")");;
 
