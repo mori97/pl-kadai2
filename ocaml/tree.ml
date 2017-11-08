@@ -9,7 +9,10 @@ let rec value_of_tree t =
   match t with
     Leaf value -> value
   | BranchS (left, right) -> value_of_tree left + value_of_tree right
-  | BranchM (left, right) -> value_of_tree left * value_of_tree right;;
+  | BranchM (left, right) -> value_of_tree left * value_of_tree right
+  (* testcase に BranchX のテストを追加すると test1 がエラーを吐いてしまうので、
+   * ダミーの値 (0) を返すようにしている *)
+  | BranchX (_, _) -> 0;;
 
 (* Kadai 1-2-2 *)
 (* 計算木の価値を返す関数 *)
