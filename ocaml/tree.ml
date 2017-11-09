@@ -98,8 +98,8 @@ let rec string_of_tree_fewer_parens t =
 let rec count_leaf t =
   match t with
     Leaf _ -> 1
-  | BranchS (left, right) -> count_leaf left + count_leaf right
-  | BranchM (left, right) -> count_leaf left + count_leaf right
+  | BranchS (left, right)
+  | BranchM (left, right)
   | BranchX (left, right) -> count_leaf left + count_leaf right;;
 
 (* 計算木の高さを返す関数 *)
@@ -107,8 +107,8 @@ let rec height t =
   let max x y = if x > y then x else y in
   match t with
     Leaf _ -> 0
-  | BranchS (left, right) -> max (height left) (height right) + 1
-  | BranchM (left, right) -> max (height left) (height right) + 1
+  | BranchS (left, right)
+  | BranchM (left, right)
   | BranchX (left, right) -> max (height left) (height right) + 1;;
 
 (* Kadai 1-2-6 *)
