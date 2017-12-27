@@ -3,6 +3,18 @@ type tree = Leaf of int
           | BranchM of tree * tree
           | BranchX of tree * tree
 
+(* Kadai 2-2 *)
+(* 畳み込み関数 *)
+let rec fold lFunc sFunc mFunc xFunc t =
+    match t with
+      Leaf value -> lFunc value
+    | BranchS (left, right) ->
+        sFunc (fold lFunc sFunc mFunc xFunc left) (fold lFunc sFunc mFunc xFunc right)
+    | BranchM (left, right) ->
+        mFunc (fold lFunc sFunc mFunc xFunc left) (fold lFunc sFunc mFunc xFunc right)
+    | BranchX (left, right) ->
+        xFunc (fold lFunc sFunc mFunc xFunc left) (fold lFunc sFunc mFunc xFunc right);;
+
 (* Kadai 1-2-1 *)
 (* 計算木の価値を返す関数 *)
 let rec value_of_tree t =
