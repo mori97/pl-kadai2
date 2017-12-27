@@ -26,28 +26,25 @@ let rec value_of_tree t =
    * ダミーの値 (0) を返すようにしている *)
   | BranchX (_, _) -> 0;;
 
-(* Kadai 1-2-2 *)
+(* Kadai 2-2 *)
 (* 計算木の価値を返す関数 *)
-let rec value_of_tree2 t =
+let value_of_tree2 t =
   let rec pow n m = (* n の m 乗 *)
     if m <= 0 then 1 else n * pow n (m - 1) in
-  match t with
-    Leaf value -> value
-  | BranchS (left, right) -> value_of_tree2 left + value_of_tree2 right
-  | BranchM (left, right) -> value_of_tree2 left * value_of_tree2 right
-  | BranchX (left, right) -> pow (value_of_tree2 left) (value_of_tree2 right);;
+  fold (fun value -> value)
+       (fun left right -> left + right)
+       (fun left right -> left * right)
+       pow
+       t;;
 
-(* Kadai 1-2-3 *)
+(* Kadai 2-2 *)
 (* 計算木の価値を表す計算式を出力する *)
-let rec string_of_tree t =
-  match t with
-    Leaf value -> string_of_int value
-  | BranchS (left, right) ->
-     "(" ^ string_of_tree left ^ "+" ^ string_of_tree right ^ ")"
-  | BranchM (left, right) ->
-     "(" ^ string_of_tree left ^ "*" ^ string_of_tree right ^ ")"
-  | BranchX (left, right) ->
-     "(" ^ string_of_tree left ^ "^" ^ string_of_tree right ^ ")";;
+let string_of_tree t =
+  fold string_of_int
+       (fun left right -> "(" ^ left ^ "+" ^ right ^ ")")
+       (fun left right -> "(" ^ left ^ "*" ^ right ^ ")")
+       (fun left right -> "(" ^ left ^ "^" ^ right ^ ")")
+       t;;
 
 (* Kadai 1-2-4 *)
 (* 計算木の価値を表す計算式を、括弧を省いた形で出力する *)
