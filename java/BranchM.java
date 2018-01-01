@@ -1,3 +1,6 @@
+import java.util.function.*;
+
+
 public class BranchM implements Tree {
     // 部分木
     private Tree left;
@@ -101,5 +104,22 @@ public class BranchM implements Tree {
      */
     public Tree subst(int n, Tree t) {
         return new BranchM(this.left.subst(n, t), this.right.subst(n, t));
+    }
+
+    /**
+     * 畳み込み関数。
+     *
+     * @param   e    葉の場合に適用する関数。
+     * @param   f1   ブランチ S の場合に適用する関数。
+     * @param   f2   ブランチ M の場合に適用する関数。
+     * @param   f3   ブランチ X の場合に適用する関数。
+     */
+    public <R> R fold(IntFunction<R> e,
+                      BinaryOperator<R> f1,
+                      BinaryOperator<R> f2,
+                      BinaryOperator<R> f3) {
+        R leftTree = this.left.fold(e, f1, f2, f3);
+        R rightTree = this.right.fold(e, f1, f2, f3);
+        return f2.apply(leftTree, rightTree);
     }
 }

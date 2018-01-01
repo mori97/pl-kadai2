@@ -1,3 +1,6 @@
+import java.util.function.*;
+
+
 public class Leaf implements Tree {
     // 葉の価値
     private int value;
@@ -83,5 +86,20 @@ public class Leaf implements Tree {
         } else {
             return this;
         }
+    }
+
+    /**
+     * 畳み込み関数。
+     *
+     * @param   e    葉の場合に適用する関数。
+     * @param   f1   ブランチ S の場合に適用する関数。
+     * @param   f2   ブランチ M の場合に適用する関数。
+     * @param   f3   ブランチ X の場合に適用する関数。
+     */
+    public <R> R fold(IntFunction<R> e,
+                      BinaryOperator<R> f1,
+                      BinaryOperator<R> f2,
+                      BinaryOperator<R> f3) {
+        return e.apply(this.value);
     }
 }
