@@ -35,7 +35,11 @@ public class BranchM implements Tree {
      * @return  計算式の文字列
      */
     public String toString() {
-        return String.format("(%s*%s)", left.toString(), right.toString());
+        return this.fold(
+            value -> Integer.toString(value),
+            (left, right) -> String.format("(%s+%s)", left.toString(), right.toString()),
+            (left, right) -> String.format("(%s*%s)", left.toString(), right.toString()),
+            (left, right) -> String.format("(%s^%s)", left.toString(), right.toString()));
     }
 
     /**
