@@ -20,7 +20,10 @@ public class Leaf implements Tree {
      * @return この葉の価値
      */
     public int value() {
-        return this.value;
+        return this.fold(value -> value,
+                         (left, right) -> left + right,
+                         (left, right) -> left * right,
+                         (left, right) -> (int)Math.pow(left, right));
     }
 
     /**

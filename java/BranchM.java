@@ -23,7 +23,10 @@ public class BranchM implements Tree {
      * @return この枝の価値
      */
     public int value() {
-        return left.value() * right.value();
+        return this.fold(value -> value,
+                         (left, right) -> left + right,
+                         (left, right) -> left * right,
+                         (left, right) -> (int)Math.pow(left, right));
     }
 
     /**
